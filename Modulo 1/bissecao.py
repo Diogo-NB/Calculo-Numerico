@@ -2,6 +2,7 @@
 import numpy as np
 """
 @author: Diogo Nunes Batista
+Módulo 1 - Trabalho 2
 
 Estimação de raízes pelo método da bisseção
 """
@@ -14,19 +15,24 @@ b = 2
 # Ponto médio (xo)
 xo = (a + b) / 2
 erro = np.inf
-count = 0
+erroMin = 0.00001 # Condição de parada, mínimo de erro aceito
 
-while erro >= 0.00001:
+# Enquanto não achar o subintervalo que possui a raíz ao nível aceito de erro
+while erro >= erroMin: 
     Yo = func(xo) #f(xo)
 
+    # Definindo o próximo subintervalo
     if func(a)*Yo < 0:
-        b = xo
+        b = xo 
     elif Yo*func(b) < 0:
-        a = xo
+        a = xo 
         
     xo_anterior = xo
+
+    # Novo ponto médio
     xo = (a + b) / 2
         
+    # Cálculo do novo erro
     erro = abs((xo - xo_anterior)/xo)
 
 print("Raiz estimada = ",xo)
