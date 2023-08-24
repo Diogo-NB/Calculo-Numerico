@@ -22,19 +22,17 @@ erroMin = 0.00001 # Condição de parada, mínimo de erro aceito
 
 # Enquanto não achar o subintervalo que possui a raíz ao nível aceito de erro
 while erro >= erroMin:
-    Yl = func(xl) #f(xl))
-    Yu = func(xu) #f(xu)
-    Yr = func(xr) #f(xr)
-
     # Definindo o próximo subintervalo
-    if Yl*Yr < 0:
+    if func(xr) == 0:
+        break
+    elif func(xl)*func(xr) < 0:
         xu = xr
-    elif Yr*Yu < 0:
+    elif func(xr)*func(xu) < 0:
         xl = xr
         
     xr_anterior = xr
     # Nova estimativa de raíz
-    xr = xu - (Yu*(xl - xu))/(Yl - Yu)
+    xr = xu - (func(xu)*(xl - xu))/(func(xl) - func(xu))
         
     # Cálculo do novo erro
     erro = abs((xr - xr_anterior)/xr)
