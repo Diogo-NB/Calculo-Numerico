@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import numpy as np
+
 """
 @author: Diogo Nunes Batista
 Módulo 2 - Trabalho 6
 
 """
+
 def func(x): return (x**5)/3 - x**4 + x + 1
 
 phi = (1 + np.sqrt(5)) / 2

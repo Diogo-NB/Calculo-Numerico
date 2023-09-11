@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy as np
+
 """
 @author: Diogo Nunes Batista
 Módulo 2 - Trabalho 7
@@ -40,6 +41,7 @@ while erro > erroMin:
             x2 = x4
         else:
             x1 = x4
+            
     x4 = nova_estimativa(x1, x2, x3)
 
     if f(x4) > f(x2): xot = x4
@@ -49,6 +51,6 @@ while erro > erroMin:
         erro = abs((xot - xot_anterior) / xot)
 
 print("Ponto máximo estimado = ", [xot,f(xot)])
-print('it: ', i)
+
     
 
