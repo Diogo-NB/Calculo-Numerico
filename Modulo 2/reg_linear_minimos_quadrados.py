@@ -1,7 +1,14 @@
 #%%
+# -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import numpy as np
+
+"""
+@author: Diogo Nunes Batista
+Módulo 2 - Trabalho 10
+
+"""
 
 x = [4.3, 4.5, 5.9, 5.6, 6.1, 5.2, 3.8, 2.1, 7.5]
 y = [126, 121, 116, 118, 114, 118, 132, 141, 108]
@@ -61,8 +68,5 @@ for i in range(n):
 
 plt.plot(x, novo_y, color='red')
 plt.show()
-
-
-
 
 # %%
