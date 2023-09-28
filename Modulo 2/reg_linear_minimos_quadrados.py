@@ -59,7 +59,8 @@ for i in range(n):
 
 # Coeficiente de Determinação
 r2 = (St - Sr) / St
-print(round(r2, 5))
+
+print("a1 =", a1, "\na0 =", a0, "r² =", round(r2, 9))
 
 novo_y = np.zeros(n)
 
