@@ -70,4 +70,3 @@ for i in range(n):
 plt.plot(x, novo_y, color='red')
 plt.show()
 
-# %%
