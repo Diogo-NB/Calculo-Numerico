@@ -93,7 +93,7 @@ def reg_exponencial(x, y, ylabel = None, xlabel = None):
 
     for i in range(n):
         # y = a * e^(bx)
-        e = y[i] - a * np.e ** (b*x[i])
+        e = y[i] - a * (np.e ** (b*x[i]))
         Sr += e*e
         St += (y[i] - avg_y) * (y[i] - avg_y)
 
@@ -177,4 +177,56 @@ y = [126, 121, 116, 118, 114, 118, 132, 141, 108]
 ex_x = [10, 20, 30,   40,  50,   60,  70,   80]
 ex_y = [25, 70, 380, 550, 610, 1220, 830, 1450]
 
-reg_exponencial(ex_x, ex_y)
+def reg_saturacao(x, y, ylabel = None, xlabel = None):
+    # y = a * e^(bx) 
+    
+    # Linearizando
+    x_linear = np.divide(1, x)
+    y_linear = np.divide(1, y)
+
+    # Tamanho de x e y
+    n = x_linear.shape[0]
+
+    results = reg_linear(x_linear, y_linear, showResults= True)
+
+    # Calculando os parametros para a função original
+    a = 1 / (results['a0'])
+    b = a * (results['a1'])
+
+    # Soma dos quadrados dos resíduos estimados
+    Sr = 0
+    # Soma total dos quadrados em torno da média da variável dependente y
+    St = 0
+    # Média de y
+    avg_y = np.average(y)
+
+    for i in range(n):
+        # y = a * e^(bx)
+        e = y[i] - (a*(x[i])) / (b + x[i])
+        Sr += e*e
+        St += (y[i] - avg_y) * (y[i] - avg_y)
+
+    # Coeficiente de Determinação
+    r2 = (St - Sr) / St
+    
+    # Novo resultado com os corretos parametros
+    results = {
+        'a': a,
+        'b': b,
+        'r²': r2
+        }
+    
+    print(results)
+
+    y_calculado = np.zeros(n)
+    
+    for i in range(n):
+        y_calculado[i] = (a*(x[i])) / (b + x[i])
+
+    plt.plot(x, y, 'o', color='black')
+    plt.plot(x, y_calculado, color='red')
+    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)
+    plt.show()
+
+reg_saturacao(ex_x, ex_y)
