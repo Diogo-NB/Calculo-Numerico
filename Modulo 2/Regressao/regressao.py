@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import numpy as np
 
+"""
+@author: Diogo Nunes Batista
+Módulo 2 - Trabalho 11
+
+"""
+
 def reg_linear(x, y, showResults = True, ylabel = None, xlabel = None):
     # y = a1x + a0
     x = np.array(x, dtype="float64")
@@ -53,6 +59,7 @@ def reg_linear(x, y, showResults = True, ylabel = None, xlabel = None):
         }
     
     if showResults:
+        print("Coeficientes do modelo linear: y = a1x + a0")
         print(results)
 
         novo_y = np.zeros(n)
@@ -171,12 +178,6 @@ def reg_potencia(x, y, ylabel = None, xlabel = None):
     plt.xlabel(xlabel)
     plt.show()
     
-x = [4.3, 4.5, 5.9, 5.6, 6.1, 5.2, 3.8, 2.1, 7.5]
-y = [126, 121, 116, 118, 114, 118, 132, 141, 108]
-
-ex_x = [10, 20, 30,   40,  50,   60,  70,   80]
-ex_y = [25, 70, 380, 550, 610, 1220, 830, 1450]
-
 def reg_saturacao(x, y, ylabel = None, xlabel = None):
     # y = a * e^(bx) 
     
@@ -229,4 +230,15 @@ def reg_saturacao(x, y, ylabel = None, xlabel = None):
     plt.xlabel(xlabel)
     plt.show()
 
-reg_saturacao(ex_x, ex_y)
+x = [4.3, 4.5, 5.9, 5.6, 6.1, 5.2, 3.8, 2.1, 7.5]
+y = [126, 121, 116, 118, 114, 118, 132, 141, 108]
+
+#ex_x = [10, 20, 30,   40,  50,   60,  70,   80]
+#ex_y = [25, 70, 380, 550, 610, 1220, 830, 1450]
+
+print("Regressão não linear - Modelo Exponencial")
+reg_exponencial(x, y)
+print("Regressão não linear - Modelo Potencia")
+reg_potencia(x, y)
+print("Regressão não linear - Modelo Saturação")
+reg_saturacao(x, y)
