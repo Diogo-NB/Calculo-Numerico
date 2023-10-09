@@ -114,17 +114,20 @@ def reg_exponencial(x, y, ylabel = None, xlabel = None):
         }
     
     print(results)
-
-    y_calculado = np.zeros(n)
     
-    for i in range(n):
-        y_calculado[i] = a * (np.e ** (b*x[i]))
+    # Vetores de auxilio para melhor visualização
+    l = 200 # Tamanho do vetor linspace
+    x_aux = np.linspace(min(x), max(x) , l).astype(float)
+    y_aux = np.zeros(l)
 
+    for i in range(l):
+        y_aux[i] = a * (np.e ** (b*x_aux[i]))
+    
     plt.plot(x, y, 'o', color='black')
-    plt.plot(x, y_calculado, color='red')
-    plt.ylabel(ylabel)
-    plt.xlabel(xlabel)
+    plt.plot(x_aux, y_aux, color='red')
     plt.show()
+
+    return results
 
 def reg_potencia(x, y, ylabel = None, xlabel = None):
     # y = a * x^b 
@@ -165,16 +168,17 @@ def reg_potencia(x, y, ylabel = None, xlabel = None):
         }
     
     print(results)
-
-    y_calculado = np.zeros(n)
     
-    for i in range(n):
-        y_calculado[i] = a * (x[i]) ** b
+    # Vetores de auxilio para melhor visualização
+    l = 200 # Tamanho do vetor linspace
+    x_aux = np.linspace(min(x), max(x) , l).astype(float)
+    y_aux = np.zeros(l)
 
+    for i in range(l):
+        y_aux[i] = a * (x_aux[i]) ** b
+    
     plt.plot(x, y, 'o', color='black')
-    plt.plot(x, y_calculado, color='red')
-    plt.ylabel(ylabel)
-    plt.xlabel(xlabel)
+    plt.plot(x_aux, y_aux, color='red')
     plt.show()
     
 def reg_saturacao(x, y, ylabel = None, xlabel = None):
@@ -217,16 +221,17 @@ def reg_saturacao(x, y, ylabel = None, xlabel = None):
         }
     
     print(results)
-
-    y_calculado = np.zeros(n)
     
-    for i in range(n):
-        y_calculado[i] = (a*(x[i])) / (b + x[i])
+    # Vetores de auxilio para melhor visualização
+    l = 200 # Tamanho do vetor linspace
+    x_aux = np.linspace(min(x), max(x) , l).astype(float)
+    y_aux = np.zeros(l)
 
+    for i in range(l):
+        y_aux[i] = (a*(x_aux[i])) / (b + x_aux[i])
+    
     plt.plot(x, y, 'o', color='black')
-    plt.plot(x, y_calculado, color='red')
-    plt.ylabel(ylabel)
-    plt.xlabel(xlabel)
+    plt.plot(x_aux, y_aux, color='red')
     plt.show()
 
 x = [4.3, 4.5, 5.9, 5.6, 6.1, 5.2, 3.8, 2.1, 7.5]
