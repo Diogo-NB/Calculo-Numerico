@@ -8,6 +8,7 @@ import numpy as np
 Módulo 2 - Trabalho 12
 
 """
+
 def reg_polinomial(x, y):
     n = len(x)
     # y = a0 + a1x +a2x^2
@@ -97,7 +98,7 @@ def reg_multipla(x1, x2, y):
     
     C = [Sy, Sx1y, Sx2y]
 
-    a = gauss_seidel(A, C, [0, 0, 0], 2e-4)
+    a = gauss_seidel(A, C, [0, 0, 0], 2e-4, showResult = False)
 
     # Soma dos quadrados dos resíduos estimados
     Sr = 0
@@ -125,16 +126,14 @@ def reg_multipla(x1, x2, y):
 
     return results
 
-
 # Retorna um novo vetor ao "isolar" a variável da posição i
 def isolar(i: int, v: object):
     new_v = np.array(v * (-1/v[i]), dtype= "float64")
     new_v[i] = 0.0
     return new_v
 
-# Ax = c
-def gauss_seidel(A, c, x, tolerancia):
-    mr = 1
+def gauss_seidel(A, c, x, tolerancia, showResult = True):
+    # Ax = c
 
     A = np.array(A, dtype="float64")
     c = np.array(c, dtype="float64")
@@ -154,9 +153,11 @@ def gauss_seidel(A, c, x, tolerancia):
         for j in range(nc):
             C[i][j] = aux[j]
         g[i] = c[i] / A[i][i]
-
+        
     # Contador
     k = 0
+
+    mr = 1
 
     # Iterando
     while mr >= tolerancia:
@@ -174,10 +175,15 @@ def gauss_seidel(A, c, x, tolerancia):
         
         k+=1 # Incrementando contador
 
-    print("Número de iterações =", k)
+    if (showResult):
+        print("Número de iterações =", k)
+        #Printa o vetor x
+        for i in range(nl):
+            print(("x" + str(i + 1) + " ≈"), x[i])
+
     return x
 
-x = [0, 2, 4, 6, 8]
+x = [  0,   2,   4,  6,  8]
 y = [110, 123, 119, 86, 62]
 
 #ex_x = [1.5,  3, 4.5,   6,  7.5,   9,  10.5,   12]
@@ -187,10 +193,10 @@ x1_m = [1250, 1300, 1350, 1250, 1300, 1250, 1300, 1350, 1350]
 x2_m = [   6,    7,    6,    7,    6,    8,    8,    7,    8]
 y_m =  [   8,   95,  101,   85,   92,   87,   96,  106,  108]
 
-ex_x1 = [0, 2, 2.5, 1, 4, 7]
-ex_x2 = [0, 1, 2, 3, 6, 2]
-ex_y = [5, 10, 9, 0, 3, 27]
+ex_x1 = [0,  2, 2.5, 1, 4,  7]
+ex_x2 = [0,  1,   2, 3, 6,  2]
+ex_y =  [5, 10,   9, 0, 3, 27]
 
-#reg_polinomial(x, y)
+reg_polinomial(x, y)
 #reg_multipla(ex_x1, ex_x2, ex_y)
-reg_multipla(x1_m, x2_m, y_m)
+#reg_multipla(x1_m, x2_m, y_m)
