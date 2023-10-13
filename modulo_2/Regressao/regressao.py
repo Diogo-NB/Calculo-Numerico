@@ -9,6 +9,7 @@ Módulo 2 - Trabalho 11
 
 """
 
+# Retorna os parâmetros calculados e o coeficiente de determinação de uma regressão linear 
 def reg_linear(x, y, showResults = True, ylabel = None, xlabel = None):
     # y = a1x + a0
     x = np.array(x, dtype="float64")
@@ -73,6 +74,8 @@ def reg_linear(x, y, showResults = True, ylabel = None, xlabel = None):
         plt.show()
 
     return results
+
+# Regressão não-lineares
 
 def reg_exponencial(x, y, ylabel = None, xlabel = None):
     # y = a * e^(bx) 

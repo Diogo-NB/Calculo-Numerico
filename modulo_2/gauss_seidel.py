@@ -18,7 +18,8 @@ def print_x(v: object):
     for i in range(v.shape[0]):
         print(("x" + str(i + 1) + " ≈"), v[i])
 
-def gauss_seidel(A, c, x, tolerancia, showResult = True):
+# Retorna uma solução x para o sistema Ax = c usando o método de gauss_seidel
+def gauss_seidel(A, c, x, tolerancia):
     # Ax = c
     # Parametro x é a estimativa inicial de solução para x 
     mr = 1
@@ -61,9 +62,8 @@ def gauss_seidel(A, c, x, tolerancia, showResult = True):
         
         k+=1 # Incrementando contador
 
-    if (showResult):
-        print("Número de iterações =", k)
-        print_x(x)
+    print("Número de iterações =", k)
+    print_x(x)
 
     return x
 

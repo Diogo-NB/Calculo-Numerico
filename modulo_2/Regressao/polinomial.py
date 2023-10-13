@@ -132,8 +132,16 @@ def isolar(i: int, v: object):
     new_v[i] = 0.0
     return new_v
 
-def gauss_seidel(A, c, x, tolerancia, showResult = True):
+# Printa o vetor x
+def print_x(v: object):
+    for i in range(v.shape[0]):
+        print(("x" + str(i + 1) + " ≈"), v[i])
+
+# Retorna uma solução x para o sistema Ax = c usando o método de gauss_seidel
+def gauss_seidel(A, c, x, tolerancia):
     # Ax = c
+    # Parametro x é a estimativa inicial de solução para x 
+    mr = 1
 
     A = np.array(A, dtype="float64")
     c = np.array(c, dtype="float64")
@@ -153,11 +161,9 @@ def gauss_seidel(A, c, x, tolerancia, showResult = True):
         for j in range(nc):
             C[i][j] = aux[j]
         g[i] = c[i] / A[i][i]
-        
+
     # Contador
     k = 0
-
-    mr = 1
 
     # Iterando
     while mr >= tolerancia:
@@ -169,17 +175,14 @@ def gauss_seidel(A, c, x, tolerancia, showResult = True):
 
         # Cálculo vetor m
         m = abs(x - x_anterior)
-        #print(m)
+        
         # Calculo de erro
         mr = max(m) / max(x)
         
         k+=1 # Incrementando contador
 
-    if (showResult):
-        print("Número de iterações =", k)
-        #Printa o vetor x
-        for i in range(nl):
-            print(("x" + str(i + 1) + " ≈"), x[i])
+    print("Número de iterações =", k)
+    print_x(x)
 
     return x
 
