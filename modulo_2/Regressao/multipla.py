@@ -5,77 +5,12 @@ import numpy as np
 
 """
 @author: Diogo Nunes Batista
-Módulo 2 - Trabalho 12
+Módulo 2 - Trabalho 13
 
 """
 
-def reg_polinomial(x, y, tolerancia = 2e-9):
-    n = len(x)
-    # y = a0 + a1x +a2x^2
-
-    sx = sy = sx2 = sx3 = sx4 = sxy = sx2y = 0
-
-    for i in range(n):
-        x2 = x[i] ** 2 #x²
-
-        sx += x[i]
-        sy += y[i]
-        sx2 += x2
-        sx3 += x2 * x[i]
-        sx4 += x2 * x2
-        sxy += x[i] * y[i]
-        sx2y += x2*y[i]
-
-    A = [
-        [n, sx, sx2],
-        [sx, sx2, sx3],
-        [sx2, sx3, sx4],
-        ]
-    
-    C = [sy, sxy, sx2y]
-
-    a = gauss_seidel(A, C, [0, 0, 0], tolerancia)
-
-    # Soma dos quadrados dos resíduos estimados
-    Sr = 0
-    # Soma total dos quadrados em torno da média da variável dependente y
-    St = 0
-    # Média de y
-    avg_y = np.average(y)
-
-    for i in range(n):
-        e = y[i] - a[0] - a[1] * (x[i]) - a[2] * (x[i]*x[i])
-        Sr += e * e
-        St += (y[i] - avg_y) * (y[i] - avg_y)
-
-    # Coeficiente de Determinação
-    r2 = (St - Sr) / St
-
-    results = {
-        "a0": a[0],
-        "a1": a[1],
-        "a2": a[2], 
-        "r2": r2
-        }
-    
-    print(results)
-    
-    # Vetores de auxilio para melhor visualização
-    l = 200 # Tamanho do vetor linspace
-    x_aux = np.linspace(x[0], x[n - 1] , l).astype(float)
-    y_aux = np.zeros(l)
-
-    for i in range(l):
-        y_aux[i] = a[0] + a[1]*(x_aux[i]) + a[2] * (x_aux[i] * x_aux[i])
-    
-    plt.plot(x, y, 'o', color='black')
-    plt.plot(x_aux, y_aux, color='red')
-    plt.show()
-
-    return results
-
-def reg_multipla(x1, x2, y):
-    n = len(x)
+def reg_multipla(x1, x2, y, tolerancia = 2e-9):
+    n = len(x1)
     # y = a0 + a1x1 +a2x2
 
     Sx1 = Sx2 = Sx1x2 = Sx1Quad = Sx2Quad = Sy = Sx1y = Sx2y = 0
@@ -98,7 +33,7 @@ def reg_multipla(x1, x2, y):
     
     C = [Sy, Sx1y, Sx2y]
 
-    a = gauss_seidel(A, C, [0, 0, 0], 2e-4, showResult = False)
+    a = gauss_seidel(A, C, [0, 0, 0], tolerancia)
 
     # Soma dos quadrados dos resíduos estimados
     Sr = 0
@@ -183,12 +118,17 @@ def gauss_seidel(A, c, x, tolerancia):
 
     return x
 
-x = [  0,   2,   4,  6,  8]
-y = [110, 123, 119, 86, 62]
+
+x1 = [1250, 1300, 1350, 1250, 1300, 1250, 1300, 1350, 1350]
+x2 = [   6,    7,    6,    7,    6,    8,    8,    7,    8]
+y =  [  80,   95,  101,   85,   92,   87,   96,  106,  108]
 
 """
-ex_x = [1.5,  3, 4.5,   6,  7.5,   9,  10.5,   12]
-ex_y = [ 87, 74,  62,  59,   65,   71,   82,   94]
+ex_x1 = [0,  2, 2.5, 1, 4,  7]
+ex_x2 = [0,  1,   2, 3, 6,  2]
+ex_y =  [5, 10,   9, 0, 3, 27]
 """
 
-reg_polinomial(x, y)
+reg_multipla(x1, x2, y)
+
+
