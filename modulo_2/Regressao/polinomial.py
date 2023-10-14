@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 import numpy as np
 
 """
@@ -71,58 +69,6 @@ def reg_polinomial(x, y, tolerancia = 2e-9):
     plt.plot(x, y, 'o', color='black')
     plt.plot(x_aux, y_aux, color='red')
     plt.show()
-
-    return results
-
-def reg_multipla(x1, x2, y):
-    n = len(x)
-    # y = a0 + a1x1 +a2x2
-
-    Sx1 = Sx2 = Sx1x2 = Sx1Quad = Sx2Quad = Sy = Sx1y = Sx2y = 0
-
-    for i in range(n):
-        Sx1 += x1[i]
-        Sx2 += x2[i]
-        Sx1Quad += x1[i] * x1[i]
-        Sx2Quad += x2[i] * x2[i]
-        Sx1x2 += x1[i] * x2[i]
-        Sy += y[i]
-        Sx1y += x1[i] * y[i]
-        Sx2y += x2[i] * y[i]
-
-    A = [
-        [n, Sx1, Sx2],
-        [Sx1, Sx1Quad, Sx1x2],
-        [Sx2, Sx1x2, Sx2Quad],
-        ]
-    
-    C = [Sy, Sx1y, Sx2y]
-
-    a = gauss_seidel(A, C, [0, 0, 0], 2e-4, showResult = False)
-
-    # Soma dos quadrados dos resíduos estimados
-    Sr = 0
-    # Soma total dos quadrados em torno da média da variável dependente y
-    St = 0
-    # Média de y
-    avg_y = np.average(y)
-
-    for i in range(n):
-        e = y[i] - a[0] - a[1] * x1[i] - a[2] * x2[i]
-        Sr += e * e
-        St += (y[i] - avg_y) * (y[i] - avg_y)
-
-    # Coeficiente de Determinação
-    r2 = (St - Sr) / St
-
-    results = {
-        "a0": a[0],
-        "a1": a[1],
-        "a2": a[2], 
-        "r2": r2
-        }
-    
-    print(results)
 
     return results
 
