@@ -1,6 +1,3 @@
-from matplotlib import pyplot as plt
-import numpy as np
-
 """
 @author: Diogo Nunes Batista
 Módulo 2 - Trabalho 7

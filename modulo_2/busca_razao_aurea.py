@@ -86,4 +86,8 @@ def busca_razao_aurea_min(func, x1, x2, erroMin = 1e-8):
 
 def func(x): return (x**5)/3 - x**4 + x + 1
 
-busca_razao_aurea(func, -1, 1.5)
+# Intervalo
+x1 = -1
+x2 = 1.5
+
+busca_razao_aurea(func, x1, x2)

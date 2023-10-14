@@ -60,7 +60,7 @@ def reg_polinomial(x, y, tolerancia = 2e-9):
     
     # Vetores de auxilio para melhor visualização
     l = 200 # Tamanho do vetor linspace
-    x_aux = np.linspace(x[0], x[n - 1] , l).astype(float)
+    x_aux = np.linspace(min(x), max(x), l).astype(float)
     y_aux = np.zeros(l)
 
     for i in range(l):
