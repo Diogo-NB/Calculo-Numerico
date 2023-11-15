@@ -71,16 +71,13 @@ def f(x, y, i, j):
 
     return res
 
-def estimar(b, x, t):
-    res = b[0]
-    for i in range(1, len(b)):
-        aux = b[i]
-        for j in range(i):
-            aux*=(t - x[j])
-        res+=aux
-
-    return res
-
 print( f(x, y, 0, n - 1) )
-print(b)
-print(estimar(b, x, 2))
+
+f_est = b[0]
+for i in range(1, len(b)):
+    aux = b[i]
+    for j in range(i):
+        aux*=(est - x[j])
+    f_est+=aux
+
+print('f(', est ,')≈', f_est, sep= '')
