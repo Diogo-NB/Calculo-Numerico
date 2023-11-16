@@ -121,33 +121,15 @@ class InterpoladorNewton:
     def __str__(self):
         return f"InterpoladorNewton[Número de pontos: {self.n}; b: {np.round(self.b, 5)}]"
 
-x = [1, 4, 5, 6]
-y = [0, 1.386294, 1.609438, 1.791759]
-
-t = 2 # Parametro para estimação
-ordem = 3
-x = intervaloMaisProximo(3 + 1, x, t)
-
-interpolador = InterpoladorNewton(x, y)
-interpolador.calculaParametros()
-print(interpolador)
-
-f_est = interpolador.estimar(t) # f(t)
-
-print(f"f({t}) = {np.round(f_est, 5)}")
-
-print("-----------------")
-
 x = [24, 25, 26, 27]
 y = [89, 124, 154, 165]
 interpolator = InterpoladorNewton(x, y)
 interpolator.calculaParametros()
-print(interpolador)
+print(interpolator)
 result = interpolator.estimar(25.8)
 print(result)
 
-newton_interpolator = interp1d(x, y, kind='cubic')  # 'cubic' indicates Newton interpolation
-
-# Evaluate the interpolation function at a specific point
+# Mesmo cálculo usando a função de scipy
+newton_interpolator = interp1d(x, y, kind='cubic') 
 result2 = newton_interpolator(25.8)
 print(result2)
