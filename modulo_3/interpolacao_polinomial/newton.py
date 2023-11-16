@@ -50,6 +50,10 @@ class InterpoladorNewton:
         self.y = np.array(y)
         self.b = list() # Lista dos coefiecentes
 
+    def estimar_print(self, t):
+        result = self.estimar(t)
+        print(f"f({t}) = {result}")
+
     def estimar(self, t): # Estima f(t)
         """
         Estima f(t) utilizando o método de interpolação de Newton
@@ -63,7 +67,7 @@ class InterpoladorNewton:
         """
         
         if not self.b: # Se a lista b estiver vazia
-            raise RuntimeError("Parâmetros da interpolação (b) não foram calculados!")
+            self.calculaParametros()
 
         # f(t)= b1 + b2(t - x1) + ... + bn(t - x1)(t - x2)...(t - xn-1)
         result = self.b[0]
@@ -79,6 +83,7 @@ class InterpoladorNewton:
         """
         Calcula os parâmetros do método de Newton
         """
+        self.b = list()
         self.__f(0, self.n - 1)
 
     def __f(self, i, j):
@@ -124,12 +129,11 @@ class InterpoladorNewton:
 x = [24, 25, 26, 27]
 y = [89, 124, 154, 165]
 interpolator = InterpoladorNewton(x, y)
-interpolator.calculaParametros()
+#interpolator.calculaParametros()
+interpolator.estimar_print(25.8)
 print(interpolator)
-result = interpolator.estimar(25.8)
-print(result)
 
 # Mesmo cálculo usando a função de scipy
 newton_interpolator = interp1d(x, y, kind='cubic') 
 result2 = newton_interpolator(25.8)
-print(result2)
+print('Scipy:', result2)
