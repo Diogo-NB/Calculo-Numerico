@@ -38,11 +38,10 @@ ordem = 3
 
 x = [4, 1, 5, 6]
 y = [np.log(4), 0, np.log(5), np.log(6)]
+est = 2
 
 x = np.array(x)
 y = np.array(y)
-
-est = 2
 
 x = intervaloMaisProximo(ordem + 1, x, est)
 n = len(x)
@@ -53,13 +52,11 @@ def f(x, y, i, j):
         res = y[i]
         if i == 0:
             b.append(res)
-        #print(x[i:j])
+
         #print(i, ': T =', (x[i], y[i]))
         print("f( x", i+1, " ) = ", res, sep='')
         return res
     
-    #print(x[i:j])
- 
     res = ( - f(x, y, i, j - 1) + f(x, y, i + 1, j) ) / ( + x[j] - x[i])
     print("f( ", end='', sep='')
     for k in range(i+1, j+2):
@@ -81,3 +78,4 @@ for i in range(1, len(b)):
     f_est+=aux
 
 print('f(', est ,')≈', f_est, sep= '')
+
