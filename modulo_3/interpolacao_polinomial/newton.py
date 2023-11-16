@@ -1,6 +1,12 @@
 import numpy as np
 from scipy.interpolate import interp1d
 
+"""
+@author: Diogo Nunes Batista
+Módulo 3 - Trabalho 14
+
+"""
+
 def intervaloMaisProximo(tamanho, array, pivot):
     """
     Retorna um sub-array de array de tamanho 'tamanho' em que resulta na menor distância total de seus elementos até 'pivot'
