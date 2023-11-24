@@ -4,7 +4,7 @@ from scipy.interpolate import interp1d
 """
 @author: Diogo Nunes Batista
 Módulo 3 - Trabalho 14
-
+Polinômio interpolador de Newton
 """
 
 def intervaloMaisProximo(tamanho, array, pivot):
@@ -132,14 +132,25 @@ class InterpoladorNewton:
     def __str__(self):
         return f"InterpoladorNewton[Número de pontos: {self.n}; b: {np.round(self.b, 5)}]"
 
-x = [24, 25, 26, 27]
+# Trabalho 14
+x = [24, 25, 26, 27, 28, 29]
 y = [89, 124, 154, 165]
-interpolator = InterpoladorNewton(x, y)
-#interpolator.calculaParametros()
-interpolator.estimar_print(25.8)
-print(interpolator)
+t = 25.8
 
-# Mesmo cálculo usando a função de scipy
-newton_interpolator = interp1d(x, y, kind='cubic') 
-result2 = newton_interpolator(25.8)
-print('Scipy:', result2)
+ordem = 3
+# encontrado o x de tamanho (ordem + 1 ) em que resulta na menor distância total de seus elementos até t
+x = intervaloMaisProximo(ordem + 1, x, t)
+
+# Criando o objeto InterpoladorNewton com base nos vetores x e y
+interpoladorNewton = InterpoladorNewton(x, y)
+
+# Estima o valor de t e printa na tela
+interpoladorNewton.estimar_print(t)
+
+# Printa número de pontos e vetor de parâmetros b encontrado pelo interpolador
+print(interpoladorNewton)
+
+# Mesmo cálculo usando a função de scipy para fim de teste
+interpoladorNewtonScipy = interp1d(x, y, kind='cubic') 
+resultadoScipy = interpoladorNewtonScipy(t)
+print(f"{resultadoScipy=}")
