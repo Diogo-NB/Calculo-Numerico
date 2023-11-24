@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import math
 import numpy as np
 from scipy.integrate import quad as integral_scipy
@@ -11,7 +10,7 @@ Trabalho 19
 
 def integral_simpson_3_8(f, a, b, n):
     """
-    Calcula a integral definida usando a regra trapeizodal multiplo
+    Calcula a integral definida usando a regra 3/8 de simpson
     """
 
     x = np.linspace(a, b, n + 1)
