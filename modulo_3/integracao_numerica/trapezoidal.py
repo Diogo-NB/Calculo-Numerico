@@ -32,5 +32,5 @@ a = 7 # Limite inferior
 b = 17 # Limite superior
 n = 20 # Número de intervalos
 
-resultado = integral_trapezoidal(f, a, b, n)
-print(f"{resultado=}")
+I = integral_trapezoidal(f, a, b, n)
+print(f"{I=}")
