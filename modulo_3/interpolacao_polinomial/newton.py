@@ -133,13 +133,9 @@ class InterpoladorNewton:
         return f"InterpoladorNewton[Número de pontos: {self.n}; b: {np.round(self.b, 5)}]"
 
 # Trabalho 14
-x = [24, 25, 26, 27, 28, 29]
+x = [24, 25, 26, 27]
 y = [89, 124, 154, 165]
 t = 25.8
-
-ordem = 3
-# encontrado o x de tamanho (ordem + 1 ) em que resulta na menor distância total de seus elementos até t
-x = intervaloMaisProximo(ordem + 1, x, t)
 
 # Criando o objeto InterpoladorNewton com base nos vetores x e y
 interpoladorNewton = InterpoladorNewton(x, y)

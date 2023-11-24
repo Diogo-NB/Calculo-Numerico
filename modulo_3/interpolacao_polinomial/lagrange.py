@@ -3,8 +3,34 @@ import numpy as np
 """
 @author: Diogo Nunes Batista
 Módulo 3 - Trabalho 15
-
+Polinômio interpolador de Lagrange
 """
+
+def intervaloMaisProximo(tamanho, array, pivot):
+    """
+    Retorna um sub-array de array de tamanho 'tamanho' em que resulta na menor distância total de seus elementos até 'pivot'
+    """
+    n = len(array)
+    if n < tamanho:
+        return
+    elif n == tamanho:
+        return array
+
+    i = 0
+    j = n - 1
+
+    for k in range(n - tamanho):
+        if array[j] - pivot > pivot - array[i]:
+            j-=1
+        else:
+            i+=1
+       
+    intervalo = np.zeros(tamanho)
+
+    for k in range(i, j + 1):
+        intervalo[k - i] = array[k]
+
+    return intervalo
 
 class InterpoladorLagrange:
 
@@ -26,7 +52,8 @@ class InterpoladorLagrange:
         self.y = np.array(y)
 
     def estimar_print(self, t):
-        print(self.estimar(t))
+        result = self.estimar(t)
+        print(f"f({t}) = {result}")    
 
     def estimar(self, t):
         return self.__f(t)
@@ -44,15 +71,13 @@ class InterpoladorLagrange:
                 res *= (t - self.x[j]) / (self.x[i] - self.x[j])
         return res
 
-x = [24, 25, 26, 27]
-y = [89, 124, 154, 165]
+# Trabalho 15
+x = [25, 26, 27]
+y = [124, 154, 165]
 t = 25.8
-x == [25, 26, 27]
 
-interpolador = InterpoladorLagrange(x, y)
-interpolador.estimar_print(t)
+# Criando o objeto InterpoladorLagrange com base nos vetores x e y
+interpoladorLagrange = InterpoladorLagrange(x, y)
 
-from scipy.interpolate import lagrange
-
-intp = lagrange(x, y)
-print(intp)
+# Estima o valor de t e printa na tela
+interpoladorLagrange.estimar_print(t)
