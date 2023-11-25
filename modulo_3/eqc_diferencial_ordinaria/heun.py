@@ -6,7 +6,7 @@ Diogo Nunes Batista
 Trabalho 21
 """
 
-def metodoHeunSemIteracao(f, a, b, f0, h):
+def metodoHeun(f, a, b, f0, h):
     # Cria um vetor que vai de a até b com espaço
     # de 'h' entre cada elemento
     t = np.arange(a, b + h, h)
@@ -44,5 +44,5 @@ b = 1
 # passo
 h = 0.2
 
-y = metodoHeunSemIteracao(f, a, b, f0, h)
+y = metodoHeun(f, a, b, f0, h)
 print(f"{y=}")
