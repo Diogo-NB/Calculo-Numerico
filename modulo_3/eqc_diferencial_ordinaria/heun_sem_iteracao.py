@@ -3,10 +3,10 @@ import numpy as np
 """
 Diogo Nunes Batista
 
-Trabalho 20
+Trabalho 21
 """
 
-def metodoEuler(f, a, b, f0, h):
+def metodoHeunSemIteracao(f, a, b, f0, h):
     # Cria um vetor que vai de a até b com espaço
     # de 'h' entre cada elemento
     t = np.arange(a, b + h, h)
@@ -15,12 +15,17 @@ def metodoEuler(f, a, b, f0, h):
     y[0] = f0 # Atribuindo a condição inicial à y[0]
 
     for i in range(0, n-1):
-        y[i+1] = y[i] + f(t[i], y[i])*h
-    
+        # Resultado de f(ti, yi)
+        f_ty =  f(t[i], y[i])
+        # Equação preditora
+        y[i+1] = y[i] + f_ty*h
+        # Equação corretora
+        y[i+1] = y[i] + (f_ty + f(t[i+1], y[i+1])) * h / 2
+
     return y
 
 """
-Exemplo do slide
+#Exemplo do slide
 f = lambda t, y: 4 * np.e ** (0.8 * t) - 0.5 * y
 f0 = 2 # Condição inicial, f(0) = t0
 
@@ -39,5 +44,5 @@ b = 1
 # passo
 h = 0.2
 
-y = metodoEuler(f, a, b, f0, h)
+y = metodoHeunSemIteracao(f, a, b, f0, h)
 print(f"{y=}")
