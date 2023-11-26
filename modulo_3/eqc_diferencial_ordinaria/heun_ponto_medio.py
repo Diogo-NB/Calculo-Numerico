@@ -25,7 +25,7 @@ def metodoHeunPontoMedio(f, a, b, f0, h):
 """
 #Exemplo do slide
 f = lambda t, y: 4 * np.e ** (0.8 * t) - 0.5 * y
-f0 = 2 # Condição inicial, f(0) = t0
+f0 = 2 # Condição inicial, f(t[0])
 
 # Intervalo
 a = 0
@@ -34,7 +34,7 @@ b = 4
 h = 1
 """
 f = lambda x, y: -2*y + 4 * np.e ** (-x)
-f0 = 2 # Condição inicial, f(0) = t0
+f0 = 2 # Condição inicial, f(t[0])
 
 # Intervalo
 a = 0

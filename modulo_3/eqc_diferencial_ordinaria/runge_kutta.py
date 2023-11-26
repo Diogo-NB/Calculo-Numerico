@@ -6,7 +6,7 @@ Diogo Nunes Batista
 Trabalho 24
 """
 
-def metodoHungeKutta(f, a, b, f0, h):
+def metodoRungeKutta(f, a, b, f0, h):
     # Cria um vetor que vai de a até b com espaço
     # de 'h' entre cada elemento
     t = np.arange(a, b + h, h)
@@ -26,7 +26,7 @@ def metodoHungeKutta(f, a, b, f0, h):
 """
 #Exemplo do slide
 f = lambda t, y: 4 * np.e ** (0.8 * t) - 0.5 * y
-f0 = 2 # Condição inicial, f(0) = t0
+f0 = 2 # Condição inicial, f(t[0])
 
 # Intervalo
 a = 0
@@ -35,7 +35,7 @@ b = 1
 h = 1
 """
 f = lambda x, y: -2*y + 4 * np.e ** (-x)
-f0 = 2 # Condição inicial, f(0) = t0
+f0 = 2 # Condição inicial, f(t[0])
 
 # Intervalo
 a = 0
@@ -43,5 +43,5 @@ b = 1
 # passo
 h = 0.2
 
-y = metodoHungeKutta(f, a, b, f0, h)
+y = metodoRungeKutta(f, a, b, f0, h)
 print(f"{y=}")
