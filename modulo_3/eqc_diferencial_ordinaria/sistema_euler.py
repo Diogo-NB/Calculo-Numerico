@@ -1,4 +1,5 @@
 import numpy as np
+from time import time as tempo
 
 """
 Diogo Nunes Batista
@@ -39,6 +40,14 @@ def metodoSitemaEuler(sis, a, b, condIni, h):
             # Adicionando/atualizando o próximo valor para o vetor auxiliar
             aux[j] = y[i]
             y[i+1] = y[i] + f(t[i], aux)*h
+    
+    """
+    # Solução usando vetorização de numpy
+    for i in range(n-1):
+        y = matriz_solucoes_y[:, i]
+        f_values = np.array([f(t[i], y) for f in sis])
+        matriz_solucoes_y[:, i+1] = y + f_values * h
+    """
 
     return matriz_solucoes_y
 
@@ -75,6 +84,8 @@ a = 0
 b = 1
 # passo
 h = 0.2
-
+start = tempo()
 y1, y2 = metodoSitemaEuler(sistema, a, b, condicoesIniciais, h)
 print(f"{y1=}\n{y2=}")
+
+print(tempo() - start)
