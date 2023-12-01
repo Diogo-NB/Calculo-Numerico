@@ -1,11 +1,11 @@
 import math
 import numpy as np
-import timeit
 
 """
 Diogo Nunes Batista
 
 Trabalho 17
+Integração númerica usando a regra do trapézio
 """
 
 def integral_trapezoidal(f, a, b, n):

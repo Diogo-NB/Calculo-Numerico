@@ -6,6 +6,7 @@ from scipy.integrate import quad as integral_scipy
 Diogo Nunes Batista
 
 Trabalho 19
+Integração númerica usando a regra 3/8 de Simpson
 """
 
 def integral_simpson_3_8(f, a, b, n):

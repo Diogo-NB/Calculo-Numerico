@@ -5,11 +5,12 @@ import numpy as np
 Diogo Nunes Batista
 
 Trabalho 18
+Integração númerica usando a regra 1/3 de Simpson
 """
 
 def integral_simpson_1_3(f, a, b, n):
     """
-    Calcula a integral definida usando a regra 1/3 de simpson
+    Calcula a integral definida usando a regra 1/3 de Simpson
     """
 
     x = np.linspace(a, b, n + 1)
