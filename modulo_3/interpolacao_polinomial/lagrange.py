@@ -33,6 +33,9 @@ def intervaloMaisProximo(tamanho, array, pivot):
     return intervalo
 
 class InterpoladorLagrange:
+    """
+    Uma classe de implementação de interpolação usando o método de Lagrange
+    """
 
     def __init__(self, x, y):
         """
@@ -56,6 +59,15 @@ class InterpoladorLagrange:
         print(f"f({t}) = {result}")    
 
     def estimar(self, t):
+        """
+        Estima f(t) utilizando o método de interpolação de Lagrange
+
+        Parâmetros:
+        - t: o valor para qual a estimativa será calculada
+
+        Retorna:
+        - A estimativa de f(t)
+        """
         return self.__f(t)
 
     def __f(self, t):

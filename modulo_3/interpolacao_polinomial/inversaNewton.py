@@ -1,5 +1,11 @@
 import numpy as np
 
+"""
+@author: Diogo Nunes Batista
+Módulo 3 - Trabalho 16
+Interpolação inversa com o interpolador de Newton e busca incremental
+"""
+
 class InterpoladorNewton:
     """
     Uma classe de implementação de interpolação usando o método de Newton
@@ -99,20 +105,21 @@ class InterpoladorNewton:
     def __str__(self):
         return f"InterpoladorNewton[Número de pontos: {self.n}; b: {np.round(self.b, 5)}]"
 
-def buscaIncremental(func, vetor, fx = 0): # fx é o número a ser buscado
+# Busca o intervalo da raiz de func dentro de vetor
+def buscaIncremental(func, vetor):
     n = len(vetor)
     i = 0
     a = vetor[i]
     b = vetor[i+1]
 
     # Enquanto não achar o subintervalo que possui a raíz ao nível aceito de erro, usando o deslocamento (fx)
-    while (func(a) - fx)*(func(b) - fx) >= 0:
+    while func(a)*func(b) >= 0:
         # Próximo subintervalo
         i+=1     
         
         # Se percorreu todos subintervalos e não foi encontrado
         if (i >= n - 1): 
-            return
+            return (a, b)
         
         a = vetor[i]
         b = vetor[i+1]
@@ -121,21 +128,23 @@ def buscaIncremental(func, vetor, fx = 0): # fx é o número a ser buscado
 
 x = [24, 25, 26, 27]
 y = [89, 124, 154, 165]
+# Número a ser encontrado
 fx = 130 
 
 # Criando o objeto InterpoladorNewton com base nos vetores x e y
 interpoladorNewton = InterpoladorNewton(x, y)
- # Calcula e armazena o vetor de parametros (b)
+# Calcula e armazena o vetor de parametros (b)
 interpoladorNewton.calculaParametros()
 parametros = interpoladorNewton.b
 n = interpoladorNewton.n
 
-# Criando o vetor do intervalo e o dividindo em 100 subintervalos
+# Criando o vetor do intervalo e o dividindo em 1000 subintervalos
 vetor = np.linspace(x[0], x[n-1], 1001)
 
 # Declaração da função
-def func(x): return interpoladorNewton.estimar(x) - fx
+func = lambda x: interpoladorNewton.estimar(x) - fx
 
-(a, b) = buscaIncremental(func, np.linspace(24.0, 27.0, 1001))
-print("Subintervalo onde a raíz se encontra: [", a,':',b, ']')
+(a, b) = buscaIncremental(func, vetor)
+
+print(f"Subintervalo onde a raíz se encontra: [{a} : {b}]")
 print(f"f({(a+b)/2}) = {func((a+b)/2) + fx}")

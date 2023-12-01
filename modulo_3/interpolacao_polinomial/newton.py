@@ -140,11 +140,13 @@ t = 25.8
 # Criando o objeto InterpoladorNewton com base nos vetores x e y
 interpoladorNewton = InterpoladorNewton(x, y)
 
-# Estima o valor de t e printa na tela
-interpoladorNewton.estimar_print(t)
-
+# Calcula os parâmetros (b) do interpolador
+interpoladorNewton.calculaParametros()
 # Printa número de pontos e vetor de parâmetros b encontrado pelo interpolador
 print(interpoladorNewton)
+
+# Estima o valor de t e printa na tela
+interpoladorNewton.estimar_print(t)
 
 # Mesmo cálculo usando a função de scipy para fim de teste
 interpoladorNewtonScipy = interp1d(x, y, kind='cubic') 
