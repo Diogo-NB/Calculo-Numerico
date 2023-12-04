@@ -4,6 +4,7 @@ import numpy as np
 Diogo Nunes Batista
 
 Trabalho 21
+Solução de Equações Diferenciais Ordinárias usando o método de Heun sem iteração
 """
 
 def metodoHeun(f, a, b, f0, h):
@@ -45,4 +46,4 @@ b = 1
 h = 0.2
 
 y = metodoHeun(f, a, b, f0, h)
-print(f"{y=}")
+print(f"y = {y}")

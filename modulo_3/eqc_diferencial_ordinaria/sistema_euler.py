@@ -1,19 +1,16 @@
 import numpy as np
-from time import time as tempo
 
 """
 Diogo Nunes Batista
 
-Trabalho 20
+Trabalho 25
+Solução de Sistemas de Equações Diferenciais Ordinárias usando o método de Euler
 """
 
-def metodoSitemaEuler(sis, a, b, condIni, h):
+def metodoSistemaEDOEuler(sis, a, b, condIni, h):
     # Cria um vetor que vai de a até b com espaço
     # de 'h' entre cada elemento
     qtdEDO = len(sis)
-    # Checando se há condições inicais para cada EDO
-    if (qtdEDO > len(condIni)):
-        raise Exception("Não há condições iniciais suficiente")
     
     t = np.arange(a, b + h, h)
     n = len(t)
@@ -40,14 +37,6 @@ def metodoSitemaEuler(sis, a, b, condIni, h):
             # Adicionando/atualizando o próximo valor para o vetor auxiliar
             aux[j] = y[i]
             y[i+1] = y[i] + f(t[i], aux)*h
-    
-    """
-    # Solução usando vetorização de numpy
-    for i in range(n-1):
-        y = matriz_solucoes_y[:, i]
-        f_values = np.array([f(t[i], y) for f in sis])
-        matriz_solucoes_y[:, i+1] = y + f_values * h
-    """
 
     return matriz_solucoes_y
 
@@ -68,7 +57,7 @@ b = 2
 # passo
 h = 0.5
 
-y1, y2 = metodoSitemaEuler(sistema, a, b, condicoesIniciais, h)
+y1, y2 = metodoSistemaEDOEuler(sistema, a, b, condicoesIniciais, h)
 print(f"{y1=}\n{y2=}")
 """
 # Vetor das EDOs, paramêtro y sendo o vetor que representa y1, y2 ... yn
@@ -84,8 +73,5 @@ a = 0
 b = 1
 # passo
 h = 0.2
-start = tempo()
-y1, y2 = metodoSitemaEuler(sistema, a, b, condicoesIniciais, h)
-print(f"{y1=}\n{y2=}")
-
-print(tempo() - start)
+y1, y2 = metodoSistemaEDOEuler(sistema, a, b, condicoesIniciais, h)
+print(f"y1 = {y1}\ny2 = {y2}")

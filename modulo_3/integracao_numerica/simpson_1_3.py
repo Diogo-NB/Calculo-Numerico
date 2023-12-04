@@ -21,15 +21,6 @@ def integral_simpson_1_3(f, a, b, n):
     I = (b - a) * (f(x[0]) + 4 * sum_impar + + 2 * sum_par + f(x[n])) / (3 * n)
     return I
 
-'''
-def f(x): return 0.2 + 25*x - 200 * (x**2) + 675 * (x**3) - 900 * (x**4) + 400 * (x**5) # Exemplo do slide
-
-a = 0
-b = 0.8
-n = 4
-
-'''
-
 f = lambda x: math.log(x - 5, 3) # f(x)
 a = 7 # Limite inferior
 b = 17 # Limite superior

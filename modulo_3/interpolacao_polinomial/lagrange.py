@@ -52,11 +52,7 @@ class InterpoladorLagrange:
             raise ValueError("Tamanho de x e y devem ser iguais!")
 
         self.x = np.array(x)
-        self.y = np.array(y)
-
-    def estimar_print(self, t):
-        result = self.estimar(t)
-        print(f"f({t}) = {result}")    
+        self.y = np.array(y)  
 
     def estimar(self, t):
         """
@@ -68,19 +64,15 @@ class InterpoladorLagrange:
         Retorna:
         - A estimativa de f(t)
         """
-        return self.__f(t)
-
-    def __f(self, t):
         res = 0
         for i in range(self.n):
-            res+= (self.__L(i, t)) * (self.y[i])
-        return res
-
-    def __L(self, i, t):
-        res = 1
-        for j in range(self.n):
-            if i != j:
-                res *= (t - self.x[j]) / (self.x[i] - self.x[j])
+            # Variavel auxiliar para o cálculo de Li
+            aux = 1
+            for j in range(self.n):
+                if i != j:
+                    aux *= (t - self.x[j]) / (self.x[i] - self.x[j])
+            #     Li  *   f(xi)
+            res+= aux * self.y[i]
         return res
 
 # Trabalho 15
@@ -92,4 +84,5 @@ t = 25.8
 interpoladorLagrange = InterpoladorLagrange(x, y)
 
 # Estima o valor de t e printa na tela
-interpoladorLagrange.estimar_print(t)
+result = interpoladorLagrange.estimar(t)
+print(f"f({t}) = {result}")

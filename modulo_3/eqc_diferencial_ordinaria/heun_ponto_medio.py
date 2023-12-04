@@ -4,9 +4,10 @@ import numpy as np
 Diogo Nunes Batista
 
 Trabalho 23
+Solução de Equações Diferenciais Ordinárias usando o método do ponto médio
 """
 
-def metodoHeunPontoMedio(f, a, b, f0, h):
+def metodoPontoMedio(f, a, b, f0, h):
     # Cria um vetor que vai de a até b com espaço
     # de 'h' entre cada elemento
     t = np.arange(a, b + h, h)
@@ -42,5 +43,5 @@ b = 1
 # passo
 h = 0.2
 
-y = metodoHeunPontoMedio(f, a, b, f0, h)
-print(f"{y=}")
+y = metodoPontoMedio(f, a, b, f0, h)
+print(f"y = {y}")

@@ -144,6 +144,7 @@ vetor = np.linspace(x[0], x[n-1], 1001)
 # Declaração da função
 func = lambda x: interpoladorNewton.estimar(x) - fx
 
+# Encontrando o intervalo que pertence a raiz e armazenando em a e b
 (a, b) = buscaIncremental(func, vetor)
 
 print(f"Subintervalo onde a raíz se encontra: [{a} : {b}]")

@@ -56,10 +56,6 @@ class InterpoladorNewton:
         self.y = np.array(y)
         self.b = list() # Lista dos coefiecentes
 
-    def estimar_print(self, t):
-        result = self.estimar(t)
-        print(f"f({t}) = {result}")
-
     def estimar(self, t): # Estima f(t)
         """
         Estima f(t) utilizando o método de interpolação de Newton
@@ -142,13 +138,10 @@ interpoladorNewton = InterpoladorNewton(x, y)
 
 # Calcula os parâmetros (b) do interpolador
 interpoladorNewton.calculaParametros()
+
 # Printa número de pontos e vetor de parâmetros b encontrado pelo interpolador
 print(interpoladorNewton)
 
 # Estima o valor de t e printa na tela
-interpoladorNewton.estimar_print(t)
-
-# Mesmo cálculo usando a função de scipy para fim de teste
-interpoladorNewtonScipy = interp1d(x, y, kind='cubic') 
-resultadoScipy = interpoladorNewtonScipy(t)
-print(f"{resultadoScipy=}")
+result = interpoladorNewton.estimar(t)
+print(f"f({t}) = {result}")

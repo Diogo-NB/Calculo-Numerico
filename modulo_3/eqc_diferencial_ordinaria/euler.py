@@ -4,6 +4,7 @@ import numpy as np
 Diogo Nunes Batista
 
 Trabalho 20
+Solução de Equações Diferenciais Ordinárias usando o método de Euler
 """
 
 def metodoEuler(f, a, b, f0, h):
@@ -40,4 +41,4 @@ b = 1
 h = 0.2
 
 y = metodoEuler(f, a, b, f0, h)
-print(f"{y=}")
+print(f"y = {y}")

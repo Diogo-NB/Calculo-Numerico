@@ -4,6 +4,7 @@ import numpy as np
 Diogo Nunes Batista
 
 Trabalho 22
+Solução de Equações Diferenciais Ordinárias usando o método de Heun com iteração
 """
 
 def metodoHeunIterativo(f, a, b, f0, h, erroMin = 1e-6, n_iteracoes = np.inf):
@@ -54,4 +55,4 @@ b = 1
 h = 0.2
 
 y = metodoHeunIterativo(f, a, b, f0, h, n_iteracoes=5)
-print(f"{y=}")
+print(f"y = {y}")
