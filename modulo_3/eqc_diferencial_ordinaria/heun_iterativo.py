@@ -7,7 +7,7 @@ Trabalho 22
 Solução de Equações Diferenciais Ordinárias usando o método de Heun com iteração
 """
 
-def metodoHeunIterativo(f, a, b, f0, h, erroMin = 1e-6, n_iteracoes = np.inf):
+def metodoHeunIterativo(f, a, b, f0, h, erroMin = 0, n_iteracoes = np.inf):
     # Cria um vetor que vai de a até b com espaço
     # de 'h' entre cada elemento
     t = np.arange(a, b + h, h)
@@ -15,7 +15,7 @@ def metodoHeunIterativo(f, a, b, f0, h, erroMin = 1e-6, n_iteracoes = np.inf):
     y = np.zeros(n)
     y[0] = f0 # Atribuindo a condição inicial à y[0]
 
-    for i in range(0, n-1):
+    for i in range(n-1):
         # Resultado de f(ti, yi)
         f_ty = f(t[i], y[i])
         # Equação preditora
@@ -30,7 +30,7 @@ def metodoHeunIterativo(f, a, b, f0, h, erroMin = 1e-6, n_iteracoes = np.inf):
             y[i+1] = y[i] + (f_ty + f(t[i+1], y[i+1])) * h / 2
              # Cálculo do erro
             erro = abs((y[i+1] - y_anterior) / y[i+1]) * 100
-            cont+=1   
+            cont+=1  
 
     return y
 
